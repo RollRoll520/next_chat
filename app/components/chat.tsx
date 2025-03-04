@@ -1868,7 +1868,7 @@ function _Chat() {
                             </div>
                             {!isUser && (
                               <div className={styles["chat-model-name"]}>
-                                {message.model}
+                                {message.model && message.model.includes("bot-") ? "deepseek联网版" : "deepseek离线版"}
                               </div>
                             )}
 

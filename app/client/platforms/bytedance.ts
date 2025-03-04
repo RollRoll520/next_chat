@@ -117,7 +117,11 @@ export class DoubaoApi implements LLMApi {
     options.onController?.(controller);
 
     try {
-      const chatPath = this.path(ByteDance.ChatPath);
+      // determine usage of online search by model id
+      const chatPath = options.config.model.includes("bot-") 
+      ? this.path(ByteDance.OnlineChatPath) 
+      : this.path(ByteDance.ChatPath);
+
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
